@@ -1,3 +1,14 @@
+const numButtons = document.querySelectorAll(".numbers");
+const display = document.querySelector(".display");
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => display.textContent = "0");
+numButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        if(display.textContent == 0) display.textContent = "";
+        display.textContent += e.target.textContent;
+    });
+});
+
 function add(a, b){
     return a + b;
 }
