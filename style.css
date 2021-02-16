@@ -23,6 +23,23 @@
     height: 70px;
     width: 270px;
     border: thin solid black;
+    /* background-color: rgb(219, 219, 219); */
+}
+.digits{
+    display: flex;
+    border: thin solid black;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(219, 219, 219);
+}
+.operators{
+    background-color: rgb(252, 226, 177);
+}
+.special{
+    background-color: aliceblue;
+    
 }
 #nine{
     grid-area: nine;
@@ -83,12 +100,4 @@
 }
 #signal{
     grid-area: signal;
-}
-.digits{
-    display: flex;
-    border: 1px solid black;
-    height: 50px;
-    width: 50px;
-    justify-content: center;
-    align-items: center;
 }
