@@ -34,12 +34,20 @@
     align-items: center;
     background-color: rgb(219, 219, 219);
 }
+.digits:hover{
+    background-color: rgb(177, 174, 174);
+}
 .operators{
     background-color: rgb(252, 226, 177);
 }
+.operators:hover{
+    background-color: rgb(247, 198, 109);
+}
 .special{
     background-color: aliceblue;
-    
+}
+.special:hover{
+    background-color: rgb(174, 216, 255);
 }
 #nine{
     grid-area: nine;
