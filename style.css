@@ -2,6 +2,7 @@
     border: 1px solid black;
     width: 282px;
     margin: auto;
+    background-color: hsl(208, 100%, 90%);
 }
 .digits-container{
     display: grid;
@@ -23,7 +24,7 @@
     height: 70px;
     width: 270px;
     border: thin solid black;
-    /* background-color: rgb(219, 219, 219); */
+    background-color: aliceblue;
 }
 .digits{
     display: flex;
