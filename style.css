@@ -1,10 +1,14 @@
+body{
+    background-color: rgb(230, 227, 227);
+}
 .calculator{
     border: 1px solid black;
     width: 282px;
     display: flex;
-    margin: auto;
+    margin: 200px auto;
     justify-content: center;
     background-color: hsl(208, 100%, 90%);
+    transform: scale(2);
 }
 .digits-container{
     display: grid;
