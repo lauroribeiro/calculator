@@ -3,44 +3,45 @@ body{
 }
 .calculator{
     border: 1px solid black;
-    width: 282px;
+    width: 564px;
     display: flex;
-    margin: 200px auto;
+    margin: auto;
     justify-content: center;
     background-color: hsl(208, 100%, 90%);
-    transform: scale(2);
+    /* transform: scale(2); */
 }
 .digits-container{
     display: grid;
-    width: 272px;
-    height: 292px;
-    grid-template-columns: 50px 50px 50px 50px 50px;
-    grid-template-rows: 70px repeat(4, 50px);
+    width: 544px;
+    height: 584px;
+    grid-template-columns: 100px 100px 100px 100px 100px;
+    grid-template-rows: 140px repeat(4, 100px);
     grid-template-areas: "display display display display display"
                          "seven eight nine del clear"
                          "four five six divide multiply"
                          "one two three subtract add"
                          "zero zero decimal equal equal";
-    row-gap: 5px;
-    column-gap: 5px;
-    margin: 5px;
+    row-gap: 10px;
+    column-gap: 10px;
+    margin: 10px;
 }
 .display{
     grid-area: display;
     display: flex;
     justify-content: right;
     align-items: center;
-    font-size: 40px;
-    height: 70px;
-    width: 270px;
+    font-size: 80px;
+    height: 140px;
+    width: 540px;
     border: thin solid black;
     background-color: aliceblue;
 }
 .digits{
     display: flex;
     border: thin solid black;
-    height: 50px;
-    width: 50px;
+    height: 100px;
+    width: 100px;
+    font-size: 35px;
     justify-content: center;
     align-items: center;
     background-color: rgb(219, 219, 219);
@@ -86,7 +87,7 @@ body{
 }
 #zero{
     grid-area: zero;
-    width: 105px;
+    width: 210px;
 }
 #decimal{
     grid-area: decimal;
@@ -110,7 +111,7 @@ body{
 #equal{
     grid-area: equal;
     background-color: rgb(174, 216, 255);
-    width: 105px;
+    width: 210px;
 }
 #clear{
     grid-area: clear;
