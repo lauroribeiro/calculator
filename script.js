@@ -6,6 +6,7 @@ const equalButton = document.querySelector("#equal");
 const delButton = document.querySelector("#del");
 
 let operation = null;
+let operatorCounter = 0;
 let shouldEraseDisplay = false;
 let firstValue = null;
 let secondValue = null;
@@ -26,8 +27,16 @@ function setOperation(operation){
 }
 
 operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
+    if(operatorCounter > 0){
+        secondValue = parseFloat(display.textContent);
+        let result = operate(setOperation(operation), firstValue, secondValue);
+        display.textContent = result;
+        secondValue = null;
+        shouldEraseDisplay = true;
+    }
     firstValue = parseFloat(display.textContent);
     operation = e.target.id;
+    operatorCounter++;
     if(operation == "invertSignal"){
         display.textContent = invertSignal(firstValue);
         return;
@@ -36,10 +45,13 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 }));
 
 equalButton.addEventListener("click", (e) => {
+    if(operation === null) return;
     secondValue = parseFloat(display.textContent);
     result = operate(setOperation(operation), firstValue, secondValue);
     display.textContent = result;
+    secondValue = null;
     shouldEraseDisplay = true;
+    operatorCounter = 0;
 });
 
 clearButton.addEventListener("click", clear);
@@ -58,6 +70,7 @@ function clear(){
     shouldEraseDisplay = false;
     firstValue = null;
     secondValue = null;
+    operatorCounter = 0;
 }
 
 function add(a, b){
