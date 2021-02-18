@@ -41,7 +41,7 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
     if(operatorCounter > 0){
         secondValue = parseFloat(display.textContent);
         let result = operate(setOperation(operation), firstValue, secondValue);
-        display.textContent = result;
+        display.textContent = roundNumber(result);
         secondValue = null;
         shouldEraseDisplay = true;
     }
@@ -53,8 +53,8 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 equalButton.addEventListener("click", (e) => {
     if(operation === null) return;
     secondValue = parseFloat(display.textContent);
-    result = operate(setOperation(operation), firstValue, secondValue);
-    display.textContent = result;
+    let result = operate(setOperation(operation), firstValue, secondValue);
+    display.textContent = roundNumber(result);
     secondValue = null;
     shouldEraseDisplay = true;
     operatorCounter = 0;
@@ -79,6 +79,10 @@ function clear(){
     firstValue = null;
     secondValue = null;
     operatorCounter = 0;
+}
+
+function roundNumber(num){
+    return num.toFixed(4);
 }
 
 function add(a, b){
