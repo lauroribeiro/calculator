@@ -30,6 +30,11 @@ function setSelectedBackgroundColor(e){
     if(e.target.id == "invertSignal") return;
     e.target.classList.toggle("selected");
 }
+function removeSelectedBackgroundColor(){
+    if(operation && document.querySelector(`#${operation}`).classList.toggle("selected")){
+        document.querySelector(`#${operation}`).classList.toggle("selected");
+    }
+}
 
 operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
     setSelectedBackgroundColor(e);
@@ -63,9 +68,7 @@ equalButton.addEventListener("click", (e) => {
 clearButton.addEventListener("click", clear);
 
 numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
-    if(operation && document.querySelector(`#${operation}`).classList.toggle("selected")){
-        document.querySelector(`#${operation}`).classList.toggle("selected");
-    }
+    removeSelectedBackgroundColor();
     if(display.textContent == 0 || shouldEraseDisplay){
         display.textContent = "";
         shouldEraseDisplay = false;
@@ -74,6 +77,7 @@ numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 }));
 
 function clear(){
+    removeSelectedBackgroundColor();
     display.textContent = "0";
     operation = null;
     shouldEraseDisplay = false;
