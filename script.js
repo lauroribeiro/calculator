@@ -1,8 +1,9 @@
 const numButtons = document.querySelectorAll(".numbers");
-const opButtons = document.querySelectorAll(".operators");
+const operationButtons = document.querySelectorAll(".operators");
 const display = document.querySelector(".display");
 const clearButton = document.querySelector("#clear");
-delButton = document.querySelector("#del");
+const equalButton = document.querySelector("#equal");
+const delButton = document.querySelector("#del");
 
 let operation = null;
 let shouldEraseDisplay = false;
@@ -20,25 +21,26 @@ delButton.addEventListener("click", () => {
     display.textContent = display.textContent.split("").slice(0,-1).join("");
 });
 
-opButtons.forEach((btn) => btn.addEventListener("click", (e) => {
-    let result = null;
-    if(!firstValue) firstValue = parseFloat(display.textContent);
-    if (!operation) operation = e.target.id;
-    console.log(operation);
+function setOperation(operation){
+    return callbackFunctions[operation];
+}
+
+operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
+    firstValue = parseFloat(display.textContent);
+    operation = e.target.id;
+    if(operation == "invertSignal"){
+        display.textContent = invertSignal(firstValue);
+        return;
+    }
     shouldEraseDisplay = true;
-    if(e.target.id == "equal"){
-        secondValue = parseFloat(display.textContent);
-        console.log(firstValue);
-        console.log(secondValue);
-        result = operate(callbackFunctions[operation], firstValue, secondValue);
-        console.log(result);
-        clear();
-        shouldEraseDisplay = true;
-    } 
-    if(operation == "invertSignal") result = invertSignal((display.textContent));
-    
-    if(result) display.textContent = result;
 }));
+
+equalButton.addEventListener("click", (e) => {
+    secondValue = parseFloat(display.textContent);
+    result = operate(setOperation(operation), firstValue, secondValue);
+    display.textContent = result;
+    shouldEraseDisplay = true;
+});
 
 clearButton.addEventListener("click", clear);
 
