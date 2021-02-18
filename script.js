@@ -22,19 +22,19 @@ delButton.addEventListener("click", () => {
 
 opButtons.forEach((btn) => btn.addEventListener("click", (e) => {
     let result = null;
-    if(!firstValue) firstValue = parseInt(display.textContent);
+    if(!firstValue) firstValue = parseFloat(display.textContent);
     if (!operation) operation = e.target.id;
     console.log(operation);
     operationSelected = true;
     if(e.target.id == "equal"){
-        secondValue = parseInt(display.textContent);
+        secondValue = parseFloat(display.textContent);
         console.log(firstValue);
         console.log(secondValue);
         result = operate(callbackFunctions[operation], firstValue, secondValue);
         console.log(result);
         clear();
     } 
-    if(operation == "invertSignal") result = invertSignal(parseInt(display.textContent));
+    if(operation == "invertSignal") result = invertSignal(parseFloat(display.textContent));
     
     if(result) display.textContent = result;
 }));
