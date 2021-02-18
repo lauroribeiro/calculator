@@ -3,11 +3,11 @@ const opButtons = document.querySelectorAll(".operators");
 const display = document.querySelector(".display");
 const clearButton = document.querySelector("#clear");
 delButton = document.querySelector("#del");
+
 let operation = null;
-let operationSelected = false;
+let shouldEraseDisplay = false;
 let firstValue = null;
 let secondValue = null;
-
 let callbackFunctions = {
     "add": add,
     "subtract": subtract,
@@ -25,7 +25,7 @@ opButtons.forEach((btn) => btn.addEventListener("click", (e) => {
     if(!firstValue) firstValue = parseFloat(display.textContent);
     if (!operation) operation = e.target.id;
     console.log(operation);
-    operationSelected = true;
+    shouldEraseDisplay = true;
     if(e.target.id == "equal"){
         secondValue = parseFloat(display.textContent);
         console.log(firstValue);
@@ -33,8 +33,9 @@ opButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         result = operate(callbackFunctions[operation], firstValue, secondValue);
         console.log(result);
         clear();
+        shouldEraseDisplay = true;
     } 
-    if(operation == "invertSignal") result = invertSignal(parseFloat(display.textContent));
+    if(operation == "invertSignal") result = invertSignal((display.textContent));
     
     if(result) display.textContent = result;
 }));
@@ -42,9 +43,9 @@ opButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 clearButton.addEventListener("click", clear);
 
 numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
-    if(display.textContent == 0 || operationSelected){
+    if(display.textContent == 0 || shouldEraseDisplay){
         display.textContent = "";
-        operationSelected = false;
+        shouldEraseDisplay = false;
     }
     display.textContent += e.target.textContent;
 }));
@@ -52,7 +53,7 @@ numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 function clear(){
     display.textContent = "0";
     operation = null;
-    operationSelected = false;
+    shouldEraseDisplay = false;
     firstValue = null;
     secondValue = null;
 }
