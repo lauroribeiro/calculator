@@ -1,7 +1,9 @@
 .calculator{
     border: 1px solid black;
     width: 282px;
+    display: flex;
     margin: auto;
+    justify-content: center;
     background-color: hsl(208, 100%, 90%);
 }
 .digits-container{
