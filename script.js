@@ -82,7 +82,7 @@ function clear(){
 }
 
 function roundNumber(num){
-    return num.toFixed(4);
+    return Math.round(num * 1000) / 1000;
 }
 
 function add(a, b){
