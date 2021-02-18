@@ -27,7 +27,6 @@ function setOperation(operation){
 }
 
 function setSelectedBackgroundColor(e){
-    if(e.target.id == "invertSignal") return;
     e.target.classList.toggle("selected");
 }
 function removeSelectedBackgroundColor(){
@@ -37,6 +36,7 @@ function removeSelectedBackgroundColor(){
 }
 
 operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
+    firstValue = parseFloat(display.textContent);
     setSelectedBackgroundColor(e);
     if(operatorCounter > 0){
         secondValue = parseFloat(display.textContent);
@@ -45,13 +45,8 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         secondValue = null;
         shouldEraseDisplay = true;
     }
-    firstValue = parseFloat(display.textContent);
     operation = e.target.id;
     operatorCounter++;
-    if(operation == "invertSignal"){
-        display.textContent = invertSignal(firstValue);
-        return;
-    }
     shouldEraseDisplay = true;
 }));
 
@@ -98,9 +93,6 @@ function multiply(a, b){
 function divide(a, b){
     if(b == 0) return "Math ERROR";
     return a / b;
-}
-function invertSignal(a){
-    return -a;
 }
 function operate(callback, a, b){
     return callback(a, b);
