@@ -26,7 +26,13 @@ function setOperation(operation){
     return callbackFunctions[operation];
 }
 
+function setSelectedBackgroundColor(e){
+    if(e.target.id == "invertSignal") return;
+    e.target.classList.toggle("selected");
+}
+
 operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
+    setSelectedBackgroundColor(e);
     if(operatorCounter > 0){
         secondValue = parseFloat(display.textContent);
         let result = operate(setOperation(operation), firstValue, secondValue);
@@ -57,6 +63,9 @@ equalButton.addEventListener("click", (e) => {
 clearButton.addEventListener("click", clear);
 
 numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
+    if(operation && document.querySelector(`#${operation}`).classList.toggle("selected")){
+        document.querySelector(`#${operation}`).classList.toggle("selected");
+    }
     if(display.textContent == 0 || shouldEraseDisplay){
         display.textContent = "";
         shouldEraseDisplay = false;

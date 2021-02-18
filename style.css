@@ -46,6 +46,9 @@
 .operators:hover{
     background-color: rgb(247, 198, 109);
 }
+.selected{
+    background-color: rgb(247, 198, 109);
+}
 .special{
     background-color: aliceblue;
 }
