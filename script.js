@@ -10,6 +10,7 @@ let operatorCounter = 0;
 let shouldEraseDisplay = false;
 let firstValue = null;
 let secondValue = null;
+let isPeriodPressed = false;
 let callbackFunctions = {
     "add": add,
     "subtract": subtract,
@@ -44,10 +45,12 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         display.textContent = roundNumber(result);
         secondValue = null;
         shouldEraseDisplay = true;
+        isPeriodPressed = false;
     }
     operation = e.target.id;
     operatorCounter++;
     shouldEraseDisplay = true;
+    isPeriodPressed = false;
 }));
 
 equalButton.addEventListener("click", (e) => {
@@ -57,6 +60,7 @@ equalButton.addEventListener("click", (e) => {
     display.textContent = roundNumber(result);
     secondValue = null;
     shouldEraseDisplay = true;
+    isPeriodPressed = false;
     operatorCounter = 0;
 });
 
@@ -68,6 +72,13 @@ numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         display.textContent = "";
         shouldEraseDisplay = false;
     }
+    if(e.target.id == "decimal"){
+        if(!isPeriodPressed){
+           display.textContent += e.target.textContent;
+           isPeriodPressed = true;
+        }
+        return;
+    } 
     display.textContent += e.target.textContent;
 }));
 
@@ -79,6 +90,7 @@ function clear(){
     firstValue = null;
     secondValue = null;
     operatorCounter = 0;
+    isPeriodPressed = false;
 }
 
 function roundNumber(num){
