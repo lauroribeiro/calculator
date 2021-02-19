@@ -15,7 +15,7 @@ body{
     width: 544px;
     height: 584px;
     grid-template-columns: 100px 100px 100px 100px 100px;
-    grid-template-rows: 140px repeat(4, 100px);
+    grid-template-rows: 145px repeat(4, 100px);
     grid-template-areas: "display display display display display"
                          "seven eight nine del clear"
                          "four five six divide multiply"
@@ -103,7 +103,6 @@ body{
 }
 #add{
     grid-area: add;
-    /* height: 105px; */
 }
 #subtract{
     grid-area: subtract;
@@ -118,4 +117,37 @@ body{
 }
 #signal{
     grid-area: signal;
+}
+
+
+@media (max-width: 600px){
+    .calculator{
+        width: 320px;
+        padding: 10px;
+    }
+    .digits-container{
+        position: relative;
+        grid-template-columns: repeat(5, 60px);
+        grid-template-rows: 115px repeat(4, 60px);
+        width: inherit;
+        margin: 0px;
+        row-gap: 5px;
+        column-gap: 5px;
+        height: auto;
+    }
+    .display{
+        font-size: 80px;
+        width: 320px;
+        height: 110px;
+    }
+    .digits{
+        /* height: wrap;
+        width: wrap; */
+        font-size: larger;
+        width: 60px;
+        height: 60px;
+    }
+    #equal, #zero{
+        width: 125px;
+    }   
 }
