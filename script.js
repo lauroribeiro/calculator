@@ -72,6 +72,7 @@ numButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         display.textContent = "";
         shouldEraseDisplay = false;
     }
+    if(display.textContent.length == 10) return;
     if(e.target.id == "decimal"){
         if(!isPeriodPressed){
            display.textContent += e.target.textContent;
