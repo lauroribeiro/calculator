@@ -30,6 +30,14 @@ function setOperation(operation){
 function setSelectedBackgroundColor(e){
     e.target.classList.toggle("selected");
 }
+
+function displayResult(result){
+    display.textContent = roundNumber(result);
+    secondValue = null;
+    shouldEraseDisplay = true;
+    isPeriodPressed = false;
+}
+
 function removeSelectedBackgroundColor(){
     if(operation && document.querySelector(`#${operation}`).classList.toggle("selected")){
         document.querySelector(`#${operation}`).classList.toggle("selected");
@@ -37,15 +45,15 @@ function removeSelectedBackgroundColor(){
 }
 
 operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
-    firstValue = parseFloat(display.textContent);
     setSelectedBackgroundColor(e);
     if(operatorCounter > 0){
         secondValue = parseFloat(display.textContent);
         let result = operate(setOperation(operation), firstValue, secondValue);
-        display.textContent = roundNumber(result);
-        secondValue = null;
-        shouldEraseDisplay = true;
-        isPeriodPressed = false;
+        displayResult(result);
+        // operation = null;
+        firstValue = result;
+    }else{
+        firstValue = parseFloat(display.textContent);
     }
     operation = e.target.id;
     operatorCounter++;
@@ -54,13 +62,11 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
 }));
 
 equalButton.addEventListener("click", (e) => {
+    removeSelectedBackgroundColor();
     if(operation === null) return;
     secondValue = parseFloat(display.textContent);
     let result = operate(setOperation(operation), firstValue, secondValue);
-    display.textContent = roundNumber(result);
-    secondValue = null;
-    shouldEraseDisplay = true;
-    isPeriodPressed = false;
+    displayResult(result);
     operatorCounter = 0;
 });
 
