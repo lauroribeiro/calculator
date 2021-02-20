@@ -50,7 +50,6 @@ operationButtons.forEach((btn) => btn.addEventListener("click", (e) => {
         secondValue = parseFloat(display.textContent);
         let result = operate(setOperation(operation), firstValue, secondValue);
         displayResult(result);
-        // operation = null;
         firstValue = result;
     }else{
         firstValue = parseFloat(display.textContent);
@@ -68,6 +67,7 @@ equalButton.addEventListener("click", (e) => {
     let result = operate(setOperation(operation), firstValue, secondValue);
     displayResult(result);
     operatorCounter = 0;
+    operation = null;
 });
 
 clearButton.addEventListener("click", clear);
@@ -103,7 +103,6 @@ function clear(){
 function roundNumber(num){
     return Math.round(num * 1000) / 1000;
 }
-
 function add(a, b){
     return a + b;
 }
@@ -119,4 +118,12 @@ function divide(a, b){
 }
 function operate(callback, a, b){
     return callback(a, b);
+}
+
+window.addEventListener("keydown", keyPress);
+
+function keyPress(e){
+    const btn = document.querySelector(`div[data-key="${e.key}"]`);
+    if(btn) btn.dispatchEvent(new Event("click"));
+    return;
 }
