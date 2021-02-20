@@ -33,6 +33,7 @@ function setSelectedBackgroundColor(e){
 
 function displayResult(result){
     display.textContent = roundNumber(result);
+    if(display.textContent.length > 10) display.textContent = "Unsupported";
     secondValue = null;
     shouldEraseDisplay = true;
     isPeriodPressed = false;
